@@ -1,7 +1,5 @@
-import java.util.Arrays;
-
 public class FrogJumpDP {
-    static int f(int n, int [] h, int [] dp) {
+    /*static int f(int n, int [] h, int [] dp) {
         if(dp[n] != -1) return dp[n];
         if(n==0) return 0;
         int l = f(n-1, h, dp) + Math.abs(h[n] - h[n-1]);
@@ -9,13 +7,21 @@ public class FrogJumpDP {
         if(n > 1)
             r = f(n-2, h, dp) + Math.abs(h[n] - h[n-2]);
         return dp[n] = Math.min(l,r);
-    }
+    }*/
 
     static int frogJump(int n, int[] heights) {
         // Write your code here..
-        int [] dp = new int[n];
-        Arrays.fill(dp,-1);
-        return f(n-1,heights,dp);
+        int res = 0;
+        int r = Integer.MAX_VALUE;
+        int l ;
+        if(n == 0) return 0;
+        for(int i = 1; i < n; i++){
+            l = Math.abs(heights[i] - heights[i-1]);
+            if(i > 1)
+                r = Math.abs(heights[i] - heights[i-2]);
+            res = Math.min(l, r);
+        }
+        return res ;
     }
 
     public static void main(String[] args) {
