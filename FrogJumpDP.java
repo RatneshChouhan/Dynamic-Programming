@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class FrogJumpDP {
     // DP Solution
     /*static int f(int n, int [] h, int [] dp) {
@@ -14,7 +16,7 @@ public class FrogJumpDP {
     static int frogJump(int n, int[] heights) {
         // Write your code here..
          int [] dp = new int[n];
-        for(int i = 0; i < n; i++) dp[i] = -1;
+         Arrays.fill(dp,-1) ;  // for(int i = 0; i < n; i++) dp[i] = -1;
         dp[0] = 0;
         int r = Integer.MAX_VALUE;
         for(int i = 1; i < n; i++){
