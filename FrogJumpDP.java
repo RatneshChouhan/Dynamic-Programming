@@ -1,4 +1,5 @@
 public class FrogJumpDP {
+    // DP Solution
     /*static int f(int n, int [] h, int [] dp) {
         if(dp[n] != -1) return dp[n];
         if(n==0) return 0;
@@ -9,19 +10,20 @@ public class FrogJumpDP {
         return dp[n] = Math.min(l,r);
     }*/
 
+    /*  Tabulation Solution */
     static int frogJump(int n, int[] heights) {
         // Write your code here..
-        int res = 0;
+         int [] dp = new int[n];
+        for(int i = 0; i < n; i++) dp[i] = -1;
+        dp[0] = 0;
         int r = Integer.MAX_VALUE;
-        int l ;
-        if(n == 0) return 0;
         for(int i = 1; i < n; i++){
-            l = Math.abs(heights[i] - heights[i-1]);
+            int l = dp[i-1] + Math.abs(heights[i] - heights[i-1]);
             if(i > 1)
-                r = Math.abs(heights[i] - heights[i-2]);
-            res = Math.min(l, r);
+                r = dp[i-2] + Math.abs(heights[i] - heights[i-2]);
+            dp[i] = Math.min(l, r);
         }
-        return res ;
+        return dp[n-1] ;
     }
 
     public static void main(String[] args) {
